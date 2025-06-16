@@ -1,8 +1,7 @@
-
 async function analyze() {
   const input = document.getElementById("input").value;
   const resultDiv = document.getElementById("result");
-  resultDiv.innerHTML = "جاري التحليل...";
+  resultDiv.innerHTML = "جاري التحليل ...";
 
   try {
     const response = await fetch("https://heartbridge-api-backend.onrender.com/analyze", {
@@ -10,12 +9,12 @@ async function analyze() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ text: input })
+      body: JSON.stringify({ message: input })  // ✅ تم تصحيح المفتاح
     });
 
     const data = await response.json();
-    resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+    resultDiv.innerHTML = data.analysis || "❌ لم يتم الحصول على تحليل.";
   } catch (error) {
-    resultDiv.innerHTML = "حدث خطأ أثناء الاتصال بالـ API.";
+    resultDiv.innerHTML = "❌ حدث خطأ أثناء الاتصال بـ API.";
   }
 }
