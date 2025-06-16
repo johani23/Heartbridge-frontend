@@ -4,7 +4,7 @@ async function analyze() {
   resultDiv.innerHTML = "جاري التحليل ...";
 
   try {
-    const response = await fetch("https://heartbridge-api-backend.onrender.com/analyze", {
+   const response = await fetch("https://heartbridge-api-backend-3.onrender.com/analyze", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
